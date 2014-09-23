@@ -1,0 +1,16 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:account.invoice,send_in_paper:"
+msgid "Send in paper"
+msgstr "Enviar en paper"
+
+msgctxt "field:party.party,send_in_paper:"
+msgid "Send in paper"
+msgstr "Enviar en paper"
+
+msgctxt "help:party.party,send_in_paper:"
+msgid ""
+"Indicates wether the partner wants to receive the invoice in paper or not."
+msgstr "Indica si el tercer vol rebre les factures en paper o no."
