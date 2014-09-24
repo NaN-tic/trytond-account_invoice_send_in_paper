@@ -13,6 +13,13 @@ class Invoice:
     send_in_paper = fields.Function(fields.Boolean('Send in paper'),
         'get_send_in_paper', searcher='search_send_in_paper')
 
+    def get_send_in_paper(self, name):
+        return self.party.send_in_paper
+
+    @classmethod
+    def search_send_in_paper(cls, name, clause):
+        return [('party.send_in_paper',) + tuple(clause[1:])]
+
 
 class Party:
     __name__ = 'party.party'
