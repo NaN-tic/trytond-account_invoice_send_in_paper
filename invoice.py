@@ -27,3 +27,29 @@ class Party:
     send_in_paper = fields.Boolean('Send in paper',
         help='Indicates wether the partner wants to receive the invoice in '
         'paper or not.')
+
+    @classmethod
+    def __setup__(cls):
+        super(Party, cls).__setup__()
+        cls._error_messages.update({
+                'no_email_and_in_paper': ('Party "%(party)s" is not marked as '
+                    'send in paper but has no email contact mechanism.'),
+                })
+
+    @staticmethod
+    def default_send_in_paper():
+        return True
+
+    @classmethod
+    def validate(cls, parties):
+        super(Party, cls).validate(parties)
+        for party in parties:
+            party.check_send_in_paper()
+
+    def check_send_in_paper(self):
+        if self.send_in_paper:
+            return
+        if not any(c.type == 'email' for c in self.contact_mechanisms):
+            self.raise_user_error('no_email_and_in_paper', {
+                    'party': self.rec_name,
+                    })

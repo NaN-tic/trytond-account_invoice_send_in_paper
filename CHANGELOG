@@ -1,2 +1,4 @@
+* Ensure that party is marked as send_in_paper if has no email
+
 Version 3.4.0 - 2014-11-03
 * Initial release

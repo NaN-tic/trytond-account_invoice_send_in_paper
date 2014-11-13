@@ -2,6 +2,14 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
+msgctxt "error:party.party:"
+msgid ""
+"Party \"%(party)s\" is not marked as send in paper but has no email contact "
+"mechanism."
+msgstr ""
+"El tercero \"%(party)s\" esta marcado como no enviar en papel, pero no tiene"
+" cap metodo de contacto de tipo email."
+
 msgctxt "field:account.invoice,send_in_paper:"
 msgid "Send in paper"
 msgstr "Enviar en papel"
