@@ -2,29 +2,22 @@
 # copyright notices and license terms.
 import unittest
 import trytond.tests.test_tryton
-from trytond.tests.test_tryton import test_view, test_depends, install_module
+from trytond.tests.test_tryton import ModuleTestCase
 from trytond.tests.test_tryton import POOL, DB_NAME, USER, CONTEXT
 from trytond.transaction import Transaction
 from trytond.exceptions import UserError
 
 
-class TestCase(unittest.TestCase):
+class TestCase(ModuleTestCase):
     'Test module'
+    module = 'account_invoice_send_in_paper'
 
     def setUp(self):
-        install_module('account_invoice_send_in_paper')
+        super(TestCase, self).setUp()
         self.party = POOL.get('party.party')
 
-    def test0005views(self):
-        'Test views'
-        test_view('account_invoice_send_in_paper')
-
-    def test0006depends(self):
-        'Test depends'
-        test_depends()
-
     def test0010send_in_paper(self):
-        'Test reverse relationship'
+        'Test send in papaer'
         with Transaction().start(DB_NAME, USER, context=CONTEXT):
             self.party.create([{'name': 'Send in paper'}])
             self.party.create([{
