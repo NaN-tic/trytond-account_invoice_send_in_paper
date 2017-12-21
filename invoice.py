@@ -4,11 +4,11 @@ from trytond.model import fields
 from trytond.pool import PoolMeta
 
 __all__ = ['Invoice', 'Party']
-__metaclass__ = PoolMeta
 
 
 class Invoice:
     __name__ = 'account.invoice'
+    __metaclass__ = PoolMeta
 
     send_in_paper = fields.Function(fields.Boolean('Send in paper'),
         'get_send_in_paper', searcher='search_send_in_paper')
@@ -23,9 +23,10 @@ class Invoice:
 
 class Party:
     __name__ = 'party.party'
+    __metaclass__ = PoolMeta
 
     send_in_paper = fields.Boolean('Send in paper',
-        help='Indicates wether the partner wants to receive the invoice in '
+        help='Indicates whether the party wants to receive the invoice in '
         'paper or not.')
 
     @classmethod
