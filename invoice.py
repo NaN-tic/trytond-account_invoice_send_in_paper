@@ -6,9 +6,8 @@ from trytond.pool import PoolMeta
 __all__ = ['Invoice', 'Party']
 
 
-class Invoice:
+class Invoice(metaclass=PoolMeta):
     __name__ = 'account.invoice'
-    __metaclass__ = PoolMeta
 
     send_in_paper = fields.Function(fields.Boolean('Send in paper'),
         'get_send_in_paper', searcher='search_send_in_paper')
@@ -21,9 +20,8 @@ class Invoice:
         return [('party.send_in_paper',) + tuple(clause[1:])]
 
 
-class Party:
+class Party(metaclass=PoolMeta):
     __name__ = 'party.party'
-    __metaclass__ = PoolMeta
 
     send_in_paper = fields.Boolean('Send in paper',
         help='Indicates whether the party wants to receive the invoice in '

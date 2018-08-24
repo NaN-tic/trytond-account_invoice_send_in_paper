@@ -26,7 +26,7 @@ class TestCase(ModuleTestCase):
                         'name': 'Not send in paper',
                         'send_in_paper': False,
                         }])
-        self.assertEqual(cm.exception.message, (u'Party "Not send in '
+        self.assertEqual(cm.exception.message, ('Party "Not send in '
                 'paper" is not marked as send in paper but has no email '
                 'contact mechanism.'))
         Party.create([{
