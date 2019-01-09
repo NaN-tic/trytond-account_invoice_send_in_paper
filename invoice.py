@@ -4,6 +4,8 @@ from trytond.model import fields
 from trytond.pool import PoolMeta
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
+from trytond.i18n import gettext
+from trytond.exceptions import UserError
 
 __all__ = ['Invoice', 'Party']
 
