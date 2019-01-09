@@ -2,6 +2,8 @@
 # copyright notices and license terms.
 from trytond.model import fields
 from trytond.pool import PoolMeta
+from trytond.i18n import gettext
+from trytond.exceptions import UserError
 
 __all__ = ['Invoice', 'Party']
 
@@ -27,14 +29,6 @@ class Party(metaclass=PoolMeta):
         help='Indicates whether the party wants to receive the invoice in '
         'paper or not.')
 
-    @classmethod
-    def __setup__(cls):
-        super(Party, cls).__setup__()
-        cls._error_messages.update({
-                'no_email_and_in_paper': ('Party "%(party)s" is not marked as '
-                    'send in paper but has no email contact mechanism.'),
-                })
-
     @staticmethod
     def default_send_in_paper():
         return True
@@ -49,6 +43,6 @@ class Party(metaclass=PoolMeta):
         if self.send_in_paper:
             return
         if not any(c.type == 'email' for c in self.contact_mechanisms):
-            self.raise_user_error('no_email_and_in_paper', {
-                    'party': self.rec_name,
-                    })
+            raise UserError(gettext(
+                'account_invoice_send_in_paper.no_email_and_in_paper',
+                    party=self.rec_name))
