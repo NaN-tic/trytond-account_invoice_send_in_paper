@@ -1,14 +1,15 @@
-# The COPYRIGHT file at the top level of this repository contains the full
-# copyright notices and license terms.
-import unittest
-import trytond.tests.test_tryton
+
+# This file is part of Tryton.  The COPYRIGHT file at the top level of
+# this repository contains the full copyright notices and license terms.
+
 from trytond.pool import Pool
 from trytond.tests.test_tryton import ModuleTestCase, with_transaction
 from trytond.exceptions import UserError
+from trytond.modules.company.tests import CompanyTestMixin
 
 
-class TestCase(ModuleTestCase):
-    'Test module'
+class AccountInvoiceSendInPaperTestCase(CompanyTestMixin, ModuleTestCase):
+    'Test AccountInvoiceSendInPaper module'
     module = 'account_invoice_send_in_paper'
 
     @with_transaction()
@@ -39,7 +40,4 @@ class TestCase(ModuleTestCase):
                     }])
 
 
-def suite():
-    suite = trytond.tests.test_tryton.suite()
-    suite.addTests(unittest.TestLoader().loadTestsFromTestCase(TestCase))
-    return suite
+del ModuleTestCase
