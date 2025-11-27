@@ -3,9 +3,7 @@
 from trytond.model import fields
 from trytond.pool import PoolMeta
 from trytond.i18n import gettext
-from trytond.exceptions import UserError
-
-__all__ = ['Invoice', 'Party']
+from trytond.model.exceptions import ValidationError
 
 
 class Invoice(metaclass=PoolMeta):
@@ -43,6 +41,6 @@ class Party(metaclass=PoolMeta):
         if self.send_in_paper:
             return
         if not any(c.type == 'email' for c in self.contact_mechanisms):
-            raise UserError(gettext(
+            raise ValidationError(gettext(
                 'account_invoice_send_in_paper.no_email_and_in_paper',
                     party=self.rec_name))
